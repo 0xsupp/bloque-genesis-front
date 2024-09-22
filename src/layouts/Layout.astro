@@ -76,16 +76,14 @@ const handleToggleClick = () => {
   localStorage.setItem("theme", isDark ? "dark" : "light");
 };
 
-  document.getElementById("theme-toggle")
-  document.addEventListener("click", handleToggleClick);
+  document.getElementById("theme-toggle")?.addEventListener("click", handleToggleClick);
 
   document.addEventListener("astro:after-swap", () => {
   if (localStorage.getItem("theme") === "dark")
     document.documentElement.classList.toggle("dark", true);
 
   if (!document.getElementById("theme-toggle")?.hasAttribute("onclick"))
-    document.getElementById("theme-toggle")
-    document.addEventListener("click", handleToggleClick);
+    document.getElementById("theme-toggle")?.addEventListener("click", handleToggleClick);
 });
   
   </script>
