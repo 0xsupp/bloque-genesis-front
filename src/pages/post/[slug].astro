@@ -31,7 +31,7 @@ const post = await getPost(slug);
      
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-white">
         <p>
-          <time datetime={String(post.publishDate)} class="inline-block">   {formatDate(post._createdAt)}</time>
+          <time class="inline-block">   {formatDate(post._createdAt)}</time>
           {
             post.author && (
               <>
@@ -41,24 +41,7 @@ const post = await getPost(slug);
               </>
             )
           }
-          {
-            post.category && (
-              <>
-                {' '}
-                ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
-                  {post.category.title}
-                </a>
-              </>
-            )
-          }
-          {
-            post.readingTime && (
-              <>
-                &nbsp;· <span>{post.readingTime}</span> min read
-              </>
-            )
-          }
+    
         </p>
       </div>
 
