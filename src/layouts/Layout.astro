@@ -66,7 +66,7 @@ if (theme === "light") {
   document.documentElement.classList.add("dark");
 }
 
-window.localStorage.setItem("theme", theme);
+window.localStorage.setItem("theme", theme?theme:'');
 
 const handleToggleClick = () => {
   const element = document.documentElement;
@@ -76,18 +76,16 @@ const handleToggleClick = () => {
   localStorage.setItem("theme", isDark ? "dark" : "light");
 };
 
-document
-  .getElementById("theme-toggle")
-  .addEventListener("click", handleToggleClick);
+  document.getElementById("theme-toggle")
+  document.addEventListener("click", handleToggleClick);
 
   document.addEventListener("astro:after-swap", () => {
   if (localStorage.getItem("theme") === "dark")
     document.documentElement.classList.toggle("dark", true);
 
-  if (!document.getElementById("theme-toggle").hasAttribute("onclick"))
-    document
-      .getElementById("theme-toggle")
-      .addEventListener("click", handleToggleClick);
+  if (!document.getElementById("theme-toggle")?.hasAttribute("onclick"))
+    document.getElementById("theme-toggle")
+    document.addEventListener("click", handleToggleClick);
 });
   
   </script>
