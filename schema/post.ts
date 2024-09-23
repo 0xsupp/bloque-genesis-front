@@ -42,6 +42,12 @@ export default defineType({
       of: [ {type: 'block'} ]
     }),
     defineField(   {
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{type: 'author'}]
+    }),
+    defineField(   {
       name: 'related',
       title: 'Related',
       type: 'array',
