@@ -13,14 +13,13 @@ const posts = await getPosts();
       <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
           <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">We invest in the world’s potential</h1>
           <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Here at BG we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
-      
       </div>
     </section>
 
 
-  <section class="flex">
-    {posts.length ? posts.map((post) => <Card post={post} />) : ''}
-  </section>
+    <section class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
+      {posts.length ? posts.map((post) => <Card post={post} />) : ''}
+    </section>
 
 
 </Layout>

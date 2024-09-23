@@ -1,8 +1,7 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
 import { PortableText } from "astro-portabletext";
-//import PortableText from "../../components/PortableText.astro";
-//import {customComponents} from "../../utils/customComponents";
+import Card from "../../components/Card.astro";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
 import { urlFor } from "../../utils/image";
@@ -28,16 +27,28 @@ const post = await getPost(slug);
 
   <article>
     <header>
-     
-      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-white">
+  
+      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-gray-300">        
+        <a href="/" class="mb-4 inline-flex text-gray-800 dark:text-white hover:underline">
+          <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+          </svg>
+           Volver
+        </a>
+      </div>
+      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-gray-300">
+
         <p>
-          <time class="inline-block">   {formatDate(post._createdAt)}</time>
+          <time class="inline-block">{formatDate(post._createdAt)}</time>
           {
             post.author && (
               <>
-                {' '}
-                {/* · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" /> */}
-                <span class="inline-block">{post.author}</span>
+                {'· by'}
+                <svg class="w-5 h-5 inline-block -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                </svg>
+
+                <span class="-ml-1 inline-block">{post.author}</span>
               </>
             )
           }
@@ -77,11 +88,10 @@ const post = await getPost(slug);
     >
 
     <PortableText value={post.body} />
-     
 
     </div>
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-    
+      {post.relatedPosts?.length ? post.relatedPosts.map((relatedPost) => <Card post={relatedPost} />) : ''}
     </div>
   </article>
 </section>
