@@ -1,6 +1,6 @@
 ---
 import { formatDate } from "../utils";
-import { urlFor } from "../utils/image";
+import Image from "../components/SanityImage.astro";
 import type { Post } from "../utils/posts";
 
 interface Props {
@@ -14,14 +14,10 @@ const { post } = Astro.props;
   <a href={`/post/${post.slug.current}`}>
     {
         post.mainImage ? (
-      <img class="rounded-t-lg" src={urlFor(post.mainImage).width(500).height(300).url()} alt={post.title} />
+        <Image node={post.mainImage} />
     )
       : 
-      (
-          <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="border-t dark:border-slate-700" />
-          </div>
-        )
+      ''
     }
   <div class="p-5">
    

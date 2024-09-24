@@ -1,11 +1,12 @@
 ---
 import type { InferGetStaticParamsType } from "astro";
-import { PortableText } from "astro-portabletext";
+import PortableText from '../../components/PortableText.astro'
 import Card from "../../components/Card.astro";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../utils";
-import { urlFor } from "../../utils/image";
 import { getPost, getPosts } from "../../utils/posts";
+import  Image  from "../../components/SanityImage.astro";
+
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -69,16 +70,9 @@ const post = await getPost(slug);
 
       {
         post.mainImage ? (
-         <img
-         class="max-w-full lg:max-w-[900px] mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-
-          src={urlFor(post.mainImage).url()}
-          alt={post?.excerpt || ''}
-        />
+        <Image node={post.mainImage} />
         ) : (
-          <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="border-t dark:border-slate-700" />
-          </div>
+          ''
         )
       }
     </header>

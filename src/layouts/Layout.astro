@@ -3,6 +3,7 @@
 import { ViewTransitions } from 'astro:transitions';
 import Navigation from '../components/Navigation.astro'
 import Footer from '../components/Footer.astro'
+import Web3 from '../components/Web3.astro'
 interface Props {
   title: string;
 }
@@ -94,6 +95,7 @@ const handleToggleClick = () => {
     <div class="container mx-auto px-4">
      
       <Navigation />
+      <!-- <Web3 /> -->
 
       <main class="py-8 px-8 mx-auto max-w-screen-xl">
         <slot />
