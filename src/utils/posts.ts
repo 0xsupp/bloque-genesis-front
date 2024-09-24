@@ -48,6 +48,6 @@ export interface Post {
   mainImage?: ImageAsset;
   author?: string;
   readingTime?: number; 
-  relatedPosts?: Object;
+  relatedPosts?: Post[];
   body: PortableTextBlock[];
 }

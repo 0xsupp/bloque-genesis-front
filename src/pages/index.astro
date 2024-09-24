@@ -17,7 +17,7 @@ const posts = await getPosts();
     </section>
 
 
-    <section class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
+    <section class="mx-auto mt-8 flex justify-between flex-col md:flex-row">
       {posts.length ? posts.map((post) => <Card post={post} />) : ''}
     </section>
 

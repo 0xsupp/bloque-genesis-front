@@ -91,7 +91,7 @@ const post = await getPost(slug);
 
     </div>
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      {post.relatedPosts?.length ? post.relatedPosts.map((relatedPost) => <Card post={relatedPost} />) : ''}
+      {post.relatedPosts ? post.relatedPosts.map((relatedPost) => <Card post={relatedPost} />) : ''}
     </div>
   </article>
 </section>
