@@ -43,14 +43,14 @@ const post = await getPost(slug);
         <p>
           <time class="inline-block">{formatDate(post._createdAt)}</time>
           {
-            post.author && (
+             post.author?.name && (
               <>
                 {'· by'}
                 <svg class="w-5 h-5 inline-block -mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                 </svg>
 
-                <span class="-ml-1 inline-block">{post.author}</span>
+                <span class="-ml-1 inline-block underline"><a href={post.author.x} target="_blank">{post.author.name}</a></span>
               </>
             )
           }
@@ -80,10 +80,19 @@ const post = await getPost(slug);
     </header>
     
     <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0 dark:text-slate-400"
+      class="break-words mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0 dark:text-slate-400"
     >
 
     <PortableText value={post.body} />
+
+      {
+        post.author ? (
+      <p>Firmado: <a href={post.author?.x} target="_blank">{post.author?.name}</a></p>
+      ) : (
+          ''
+        )
+      }
+
 
     </div>
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
