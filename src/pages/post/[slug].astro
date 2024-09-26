@@ -15,21 +15,21 @@ export async function getStaticPaths() {
   }));
 }
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 const { slug } = Astro.params as Params;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 
 
 const post = await getPost(slug);
 ---
 
 <Layout title={post.title!}>
-<section class="py-8 sm:py-16 lg:py-20 mx-auto">
-
+<section class="py-8 sm:py-16 lg:py-20 mx-auto max-w-3xl">
 
   <article>
     <header>
   
-      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-gray-300">        
+      <div class="flex justify-between flex-col sm:flex-row mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-gray-300">        
         <a href="/" class="mb-4 inline-flex text-gray-800 dark:text-white hover:underline">
           <svg class="w-6 h-6 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
@@ -37,7 +37,8 @@ const post = await getPost(slug);
            Volver
         </a>
       </div>
-      <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-gray-300">
+      
+      <div class="flex justify-between flex-col sm:flex-row mt-0 mb-2 px-4 sm:px-6 sm:items-center dark:text-gray-300">
 
         <p>
           <time class="inline-block">{formatDate(post._createdAt)}</time>
@@ -58,23 +59,24 @@ const post = await getPost(slug);
       </div>
 
       <h1
-        class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading dark:text-white"
+        class="px-4 sm:px-6 text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading dark:text-white"
       >
         {post.title}
       </h1>
       <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
+        class="mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
       >
         {post.excerpt}
       </p>
-
+      <div class="px-6">
       {
         post.mainImage ? (
-        <Image node={post.mainImage} />
+          <Image node={post.mainImage} />
         ) : (
           ''
         )
       }
+      </div>
     </header>
     
     <div
